@@ -25,6 +25,7 @@ public class GestoreCorsiController {
 	}
 	
 	  @FXML
+	  
 	    private TextArea txtresult;
 
 	    @FXML
