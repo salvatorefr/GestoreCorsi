@@ -39,42 +39,16 @@ public class GestoreCorsiController {
 
 	    @FXML
 	    void calcolaStatCorsi(ActionEvent event) {
-	    	List<Iscrizione> iscrizioni=new ArrayList<Iscrizione>();
-	    	List<Corso> corsi= new ArrayList<Corso>();
-	    	List<Studente> studenti= new ArrayList<Studente>();
-	    	String corsoCercato=this.txtperiodo.getText();
-	    	corsi.addAll(model.getCorsi());
-	    	iscrizioni.addAll(model.getIscritti());
-	    	studenti.addAll(model.getStudenti());
+	    	
 	    
 	    	this.txtresult.clear();
-	    	for (Corso c:corsi) {
-	    		if (corsoCercato.compareTo(c.getNome())==0||corsoCercato.compareTo(c.getCodice())==0) {
-	    			
-	    			int numisc=1;
-	    			for (Iscrizione isc:iscrizioni) {
-	    				
-	    				Studente cercato;
-	    				
-	    				if (isc.getCodins().compareTo(c.getCodice())==0) {
-	    					
-	    					
-	    					int matricola=isc.getMatricola();
-	    					
-	    					 cercato=new Studente(matricola,"","",""); 
-	    						if (studenti.contains(cercato)) {
-	    						
-	    						int indiceStud= 	studenti.indexOf(cercato);
-	    					
-	    							this.txtresult.appendText(numisc+"  "+studenti.get(indiceStud).getNome()+" "+studenti.get(indiceStud).getCognome()+"\n");
-	    							numisc++;	
-	    					}
-	    						
-	    				
-	    			}
-	    		}
-	    	
-	    }
+	     String corsoCercato =this.txtperiodo.getText();
+	     
+	     
+	    List <Studente> statStud= new ArrayList<Studente>();
+	    	statStud.addAll(model.cercaStudentiIscrittiAlCOrso(corsoCercato));
+	    	for (Studente st:statStud) {
+	    		this.txtresult.appendText(st.getCognome()+" "+st.getNome()+" "+st.getCds()+"\n");
 	    	}
 	    	}
 	    

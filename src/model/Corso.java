@@ -1,6 +1,8 @@
 package model;
 
 public class Corso {
+	private String codice,nome;
+	private int crediti,periodo;
 	@Override
 	public String toString() {
 		return "Corso [codice=" + codice + ", nome=" + nome + ", crediti=" + crediti + ", periodo=" + periodo + "]";
@@ -35,8 +37,7 @@ public class Corso {
 			return false;
 		return true;
 	}
-	String codice,nome;
-	int crediti,periodo;
+	
 	public String getCodice() {
 		return codice;
 	}
