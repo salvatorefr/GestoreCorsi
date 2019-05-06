@@ -18,7 +18,7 @@
          <children>
             <HBox>
                <children>
-                  <Label text="Periodo/Corso">
+                  <Label text="Periodo">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -36,15 +36,22 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="btnStatistiche" mnemonicParsing="false" onAction="#calcolaStatCorsi" text="Statistiche">
+                  <Button fx:id="statistichecds" mnemonicParsing="false" onAction="#calcolaStatistichecds" text="Statistiche cds" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label text="corso:" />
+                  <TextField fx:id="inputcds" />
+                  <Button fx:id="btnStatistiche" mnemonicParsing="false" onAction="#calcolaStatCorsi" text="Elenca studenti">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Button>
                </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
             </HBox>
             <HBox />
          </children>

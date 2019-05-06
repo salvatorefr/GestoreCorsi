@@ -4,35 +4,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.mysql.jdbc.Connection;
 
 
-import it.polito.tdp.corsi.db.CorsoDAO;
+
 import it.polito.tdp.corsi.db.DbConnect;
-import it.polito.tdp.corsi.db.IscrizioneDAO;
-import it.polito.tdp.corsi.db.StudenteDAO;
 
 public class CorsiModel {
 
-	public List<Corso> cercaCorso(int parseInt) {
-	return CorsoDAO.getCorsiPeriodo(parseInt);
 	
-	}
-	public List<Iscrizione> getIscritti() {
-		IscrizioneDAO ida= new IscrizioneDAO();
-		return ida.listAll();
-	}
-	public List<Studente> getStudenti(){
-		StudenteDAO sd =new StudenteDAO();
-		return sd.getStudenti();
-	}
-	public List<Corso> getCorsi() {
-		CorsoDAO corsi= new CorsoDAO();
-		return corsi.getCorsiAll();
-		
-	}
+			
+	
 	public List <Studente> cercaStudentiIscrittiAlCOrso(String corsoCercato){
 	List<Studente> ritorno=new ArrayList<Studente>();
 		Connection conn= DbConnect.getConnection();
@@ -52,6 +37,25 @@ public class CorsiModel {
 	return ritorno;
 	
 	
+	}
+	
+	public HashMap <String,Integer> cercaCorsoIscritti(int per) {
+	HashMap <String,Integer> mappaCorsoIscritti = new HashMap <String,Integer>();
+	Connection conn= DbConnect.getConnection();
+	try {
+		String query= "SELECT c.codins, c.nome, COUNT(*) AS tot from corso c,iscrizione i  WHERE i.codins=c.codins and c.pd= ? GROUP BY c.codins, c.nome";
+		PreparedStatement st= conn.prepareStatement(query);
+		st.setInt(1,per);
+		ResultSet rs= st.executeQuery();
+		while (rs.next()) {mappaCorsoIscritti.put(rs.getString("nome"),rs.getInt("tot"));}
+	
+			
+	}catch (SQLException e) {}
+	return mappaCorsoIscritti;
+	}
+
+	public HashMap<String, String> calcoloCds(String codins) {
+				return null;
 	}
 	
 
